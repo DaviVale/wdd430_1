@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import postgres from 'postgres';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+//import { updateInvoice } from '@/app/lib/actions';
  
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
  
@@ -72,7 +73,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
 }
-
+const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 export async function updateInvoice(
   id: string,
   prevState: State,
